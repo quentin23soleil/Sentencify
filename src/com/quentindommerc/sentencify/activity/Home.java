@@ -18,7 +18,7 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
-		mSentence.setText("Hello, I want to work for you.");
+		mSentence.setText("I want to. work for you. So. Hire me");
 	}
 
 	@Override
@@ -27,11 +27,15 @@ public class Home extends Activity {
 		return true;
 	}
 
-	// TODO implement custom sub-sentences like
-	// "I want to; work for you; So; Hire me"
+	// TODO implement sub-sentences like :
+	// "I want to. work for you. So. Hire me"
+	// would only be one sentence
 	public void sentencify(View v) {
 		String sentence = mSentence.getText().toString();
-		sentence = sentence.replaceAll("\\p{Punct}+", " ");
+		if (sentence.isEmpty()) {
+			mSentence.setError(getString(R.string.error_sentence_empty));
+			return;
+		}
 		sentence = sentence.replaceAll("\\s+", " ");
 		Intent i = new Intent(this, Sentence.class);
 		i.putExtra("sentence", sentence);

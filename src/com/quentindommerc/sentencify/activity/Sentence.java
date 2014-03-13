@@ -23,8 +23,9 @@ public class Sentence extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.view_pager);
 		mWords = new ArrayList<Word>();
 		String initialSentence = getIntent().getExtras().getString("sentence");
-		String[] words = initialSentence.split(" ");
+		String[] words = initialSentence.split("\\.");
 		for (String i : words) {
+			i = i.replaceAll("\\p{Punct}+", " ");
 			mWords.add(new Word(i));
 		}
 		mAdapter = new WordPagerAdapter(getSupportFragmentManager(), mWords);
