@@ -1,4 +1,4 @@
-package com.quentindommerc.sentencify.utils;
+package com.quentindommerc.sentencify.listener;
 
 import com.quentindommerc.sentencify.bean.Track;
 

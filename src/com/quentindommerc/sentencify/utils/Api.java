@@ -8,6 +8,7 @@ import android.content.Context;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
+import com.quentindommerc.sentencify.listener.OnApiResult;
 
 public class Api {
 

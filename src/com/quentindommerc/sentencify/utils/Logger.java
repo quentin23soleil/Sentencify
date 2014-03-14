@@ -8,7 +8,7 @@ public class Logger {
 		DEBUG, INFO, ERROR, SILENT
 	};
 
-	public static String TAG = "Cojetage";
+	public static String TAG = "Sentencify";
 	public static int level = Level.DEBUG.ordinal();
 
 	public static void e(Object... s) {

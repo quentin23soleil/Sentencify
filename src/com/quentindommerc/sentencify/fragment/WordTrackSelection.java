@@ -18,10 +18,11 @@ import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.adapter.TrackAdapter;
 import com.quentindommerc.sentencify.bean.Track;
 import com.quentindommerc.sentencify.bean.Word;
+import com.quentindommerc.sentencify.listener.OnApiResult;
+import com.quentindommerc.sentencify.listener.OnTrackSelected;
+import com.quentindommerc.sentencify.listener.OnTrackSelectedFromPage;
 import com.quentindommerc.sentencify.utils.Api;
 import com.quentindommerc.sentencify.utils.ApiParser;
-import com.quentindommerc.sentencify.utils.OnApiResult;
-import com.quentindommerc.sentencify.utils.OnTrackSelected;
 
 public class WordTrackSelection extends Fragment implements OnTrackSelected {
 
@@ -29,6 +30,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	private ListView mList;
 	private TrackAdapter mAdapter;
 	private ProgressBar mProgress;
+	private OnTrackSelectedFromPage mListener;
 
 	public static WordTrackSelection newInstance(Word w) {
 		Bundle b = new Bundle();
@@ -41,6 +43,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mListener = (OnTrackSelectedFromPage) getActivity();
 		mWord = getArguments().getParcelable("word");
 		mAdapter = new TrackAdapter(getActivity(), this);
 	}
@@ -115,6 +118,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	public void trackSelected(Track t) {
 		mWord.setSelectedTrack(t);
 		Toast.makeText(getActivity(), t.getName() + " selected", Toast.LENGTH_LONG).show();
+		mListener.trackSelected(mWord);
 	}
 
 }

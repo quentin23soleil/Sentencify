@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Track;
-import com.quentindommerc.sentencify.utils.OnTrackSelected;
+import com.quentindommerc.sentencify.listener.OnTrackSelected;
 
 public class TrackAdapter extends ArrayAdapter<Track> {
 

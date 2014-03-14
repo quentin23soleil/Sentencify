@@ -1,4 +1,4 @@
-package com.quentindommerc.sentencify.utils;
+package com.quentindommerc.sentencify.listener;
 
 public interface OnApiResult {
 	public void success(int code, String s);
