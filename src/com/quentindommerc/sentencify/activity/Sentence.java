@@ -8,8 +8,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
 
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Playlist;
@@ -29,9 +29,15 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sentence);
 		mPager = (ViewPager) findViewById(R.id.view_pager);
+		PagerTabStrip strip = (PagerTabStrip) findViewById(R.id.pager_strip);
+		strip.setTabIndicatorColor(getResources().getColor(R.color.sentencify_color));
 		mWords = new ArrayList<Word>();
 		String initialSentence = getIntent().getExtras().getString("sentence");
 		mInitialSentence = initialSentence.replaceAll("\\p{Punct}+", " ");
+		mInitialSentence = mInitialSentence.replaceAll("\\s+", " ");
+		mInitialSentence = mInitialSentence.toLowerCase();
+		mInitialSentence = mInitialSentence.substring(0, 1).toUpperCase()
+				+ mInitialSentence.substring(1);
 		String[] words = initialSentence.split("\\.");
 		for (String i : words) {
 			i = i.replaceAll("\\p{Punct}+", " ");
@@ -94,13 +100,11 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 		t.start();
 	}
 
-	// TODO finir else
 	@Override
 	public void trackSelected(Word w) {
 		if (mPager.getCurrentItem() < (mAdapter.getCount() - 1))
 			mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
 		else {
-			Toast.makeText(this, "fini", Toast.LENGTH_LONG).show();
 			createPlaylist();
 		}
 	}

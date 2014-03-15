@@ -37,6 +37,11 @@ public class Utils {
 		}
 	}
 
+	public static String iso2CountryCodeToIso3CountryCode(String iso2CountryCode) {
+		Locale locale = new Locale("", iso2CountryCode);
+		return locale.getISO3Country();
+	}
+
 	public static boolean hasInternet(Context ct) {
 		if (ct != null) {
 			ConnectivityManager connectivityManager = (ConnectivityManager) ct

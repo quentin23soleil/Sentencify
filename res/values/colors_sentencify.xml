@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="sentencify_color">#81b71a</color>
-    <color name="sentencify_color_transp">#3381b71a</color>
+    <color name="sentencify_color_transp">#AA81b71a</color>
 </resources>

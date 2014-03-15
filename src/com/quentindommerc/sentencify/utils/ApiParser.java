@@ -1,5 +1,7 @@
 package com.quentindommerc.sentencify.utils;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,6 +38,13 @@ public class ApiParser {
 		a.setHref(obj.optString("href"));
 		a.setName(obj.optString("name"));
 		a.setReleaseYear(obj.optString("release"));
+		JSONObject availability = obj.optJSONObject("availability");
+		String[] terr = availability.optString("territories").split(" ");
+		ArrayList<String> terrArr = new ArrayList<String>();
+		for (String s : terr) {
+			terrArr.add(Utils.iso2CountryCodeToIso3CountryCode(s));
+		}
+		a.setTerritories(terrArr);
 		return a;
 	}
 

@@ -14,9 +14,18 @@ public class Track implements Parcelable {
 	private int mTrackNumber;
 	private Album mAlbum;
 	private ArrayList<Artist> mArtist;
+	private boolean isSelected;
 
 	public Track() {
 		mArtist = new ArrayList<Artist>();
+	}
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 
 	public Album getAlbum() {
@@ -92,6 +101,7 @@ public class Track implements Parcelable {
 		} else {
 			mArtist = null;
 		}
+		isSelected = in.readByte() != 0x00;
 	}
 
 	@Override
@@ -113,6 +123,7 @@ public class Track implements Parcelable {
 			dest.writeByte((byte) (0x01));
 			dest.writeList(mArtist);
 		}
+		dest.writeByte((byte) (isSelected ? 0x01 : 0x00));
 	}
 
 	public static final Parcelable.Creator<Track> CREATOR = new Parcelable.Creator<Track>() {

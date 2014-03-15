@@ -1,12 +1,16 @@
 package com.quentindommerc.sentencify.fragment;
 
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,7 @@ import com.quentindommerc.sentencify.listener.OnTrackSelected;
 import com.quentindommerc.sentencify.listener.OnTrackSelectedFromPage;
 import com.quentindommerc.sentencify.utils.Api;
 import com.quentindommerc.sentencify.utils.ApiParser;
+import com.quentindommerc.sentencify.utils.Logger;
 
 public class WordTrackSelection extends Fragment implements OnTrackSelected {
 
@@ -100,9 +105,18 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 			try {
 				JSONObject obj = new JSONObject(s);
 				JSONArray tracks = obj.getJSONArray("tracks");
+				TelephonyManager manager = (TelephonyManager) getActivity().getSystemService(
+						Context.TELEPHONY_SERVICE);
+
+				String ISO2 = manager.getSimCountryIso();
+
+				String ISO3 = new Locale("", ISO2).getISO3Country();
+				Logger.d(ISO3);
 				for (int i = 0; i < tracks.length(); i++) {
 					Track t = ApiParser.parseTrack(tracks.getJSONObject(i));
-					if (t.getName().toLowerCase().contains(mWord.getWord().toLowerCase()))
+					if (t.getAlbum().getTerritories().contains(ISO3))
+						// if
+						// (t.getName().toLowerCase().contains(mWord.getWord().toLowerCase()))
 						mWord.addTrack(t);
 				}
 			} catch (JSONException e) {
@@ -111,11 +125,15 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 			mAdapter.addAll(mWord.getTracks());
 			return null;
 		}
-
 	}
 
 	@Override
-	public void trackSelected(Track t) {
+	public void trackSelected(Track t, int pos) {
+		for (int i = 0; i < mAdapter.getCount(); i++) {
+			mAdapter.getItem(i).setSelected(false);
+		}
+		mAdapter.getItem(pos).setSelected(true);
+		mAdapter.notifyDataSetChanged();
 		mWord.setSelectedTrack(t);
 		Toast.makeText(getActivity(), t.getName() + " selected", Toast.LENGTH_LONG).show();
 		mListener.trackSelected(mWord);

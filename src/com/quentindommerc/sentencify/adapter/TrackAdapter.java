@@ -26,7 +26,7 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		ViewHolder holder;
 
@@ -46,11 +46,15 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 		holder.title.setText(t.getName());
 		holder.album.setText(t.getAlbum().getName());
 		holder.artist.setText(t.getArtist().get(0).getName());
+		if (t.isSelected())
+			holder.select.setBackgroundResource(R.drawable.sentencify_btn_default_holo_light);
+		else
+			holder.select.setBackgroundResource(R.drawable.grey_btn_default_holo_light);
 		holder.select.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				mListener.trackSelected(t);
+				mListener.trackSelected(t, position);
 			}
 		});
 		return v;

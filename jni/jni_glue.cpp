@@ -96,11 +96,11 @@ JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrappe
     jstring string = (jstring) je->GetObjectArrayElement(trackables_, i);
     const char *rawString = je->GetStringUTFChars(string, 0);
     string_params.push_back(rawString);
-    je->ReleaseStringUTFChars(string, rawString);
   }
 
 
   addTask(create_playlist, "create_playlist", string_params);
+  je->ReleaseStringUTFChars(string, rawString);
   je->ReleaseStringUTFChars(j_name, name);
 }
 

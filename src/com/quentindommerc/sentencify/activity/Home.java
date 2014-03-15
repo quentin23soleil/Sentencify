@@ -33,10 +33,7 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
-		ViewTarget target = new ViewTarget(mSentence);
-		ShowcaseView.insertShowcaseView(target, this, R.string.showcase_sentence_title,
-				R.string.showcase_sentence_details);
-
+		showShowcase();
 		if (Utils.getSharedPref(this, "username").equals("")) {
 			Intent i = new Intent(this, Login.class);
 			startActivityForResult(i, REQUEST_LOGIN);
@@ -65,6 +62,12 @@ public class Home extends Activity {
 					public void onLogin() {
 					}
 				});
+	}
+
+	private void showShowcase() {
+		ViewTarget target = new ViewTarget(mSentence);
+		ShowcaseView.insertShowcaseView(target, this, R.string.showcase_sentence_title,
+				R.string.showcase_sentence_details);
 	}
 
 	@Override
@@ -104,7 +107,7 @@ public class Home extends Activity {
 
 	private void setup() {
 		if (BuildConfig.DEBUG)
-			mSentence.setText("I want to. work for you. So. Hire me");
+			mSentence.setText("I love it. Thanks again. This is awesome. Lol");
 	}
 
 	@Override
@@ -115,6 +118,8 @@ public class Home extends Activity {
 			break;
 		case R.id.action_about:
 			about();
+		case R.id.action_help:
+			showShowcase();
 		default:
 			break;
 		}
