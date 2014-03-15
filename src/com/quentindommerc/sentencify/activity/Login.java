@@ -6,6 +6,8 @@ import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AccelerateInterpolator;
@@ -34,6 +36,9 @@ public class Login extends FragmentActivity {
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		getActionBar().hide();
 		super.onCreate(arg0);
+		LibSpotifyWrapper.init(LibSpotifyWrapper.class.getClassLoader(), Environment
+				.getExternalStorageDirectory().getAbsolutePath()
+				+ "/Android/data/com.spotify.hacks.psyonspotify");
 		setContentView(R.layout.activity_login);
 		mUsername = (EditText) findViewById(R.id.username);
 		mPassword = (EditText) findViewById(R.id.password);
@@ -76,9 +81,6 @@ public class Login extends FragmentActivity {
 	public void signin(View v) {
 		if (!checkField())
 			return;
-		LibSpotifyWrapper.init(LibSpotifyWrapper.class.getClassLoader(), Environment
-				.getExternalStorageDirectory().getAbsolutePath()
-				+ "/Android/data/com.spotify.hacks.psyonspotify");
 		LibSpotifyWrapper.loginUser(mUsername.getText().toString(), mPassword.getText().toString(),
 				new LoginDelegate() {
 
@@ -114,6 +116,18 @@ public class Login extends FragmentActivity {
 	private void back() {
 		setResult(RESULT_OK);
 		finish();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.login, menu);
+		return true;
 	}
 
 }

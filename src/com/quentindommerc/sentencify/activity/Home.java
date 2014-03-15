@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -97,5 +98,31 @@ public class Home extends Activity {
 	private void setup() {
 		if (BuildConfig.DEBUG)
 			mSentence.setText("I want to. work for you. So. Hire me");
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_logout:
+			logout();
+			break;
+		case R.id.action_about:
+			about();
+		default:
+			break;
+		}
+		return true;
+	}
+
+	private void about() {
+		Intent i = new Intent(this, About.class);
+		startActivity(i);
+	}
+
+	private void logout() {
+		Utils.rmSharedPref(this, "username");
+		Utils.rmSharedPref(this, "password");
+		Intent i = new Intent(this, Login.class);
+		startActivityForResult(i, REQUEST_LOGIN);
 	}
 }

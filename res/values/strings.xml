@@ -13,5 +13,7 @@
     <string name="error_username">Username should be > 4 characters</string>
     <string name="error_password">Password should be > 4 characters</string>
     <string name="error_login">Cannot sign you in, are you sure about your credentials?</string>
+    <string name="action_about">About</string>
+    <string name="action_logout">Logout</string>
 
 </resources>
