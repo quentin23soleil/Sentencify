@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.espian.showcaseview.ShowcaseView;
+import com.espian.showcaseview.targets.ViewTarget;
 import com.quentindommerc.sentencify.BuildConfig;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.listener.LoginDelegate;
@@ -30,6 +33,10 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
+		ViewTarget target = new ViewTarget(mSentence);
+		ShowcaseView.insertShowcaseView(target, this, R.string.showcase_sentence_title,
+				R.string.showcase_sentence_details);
+
 		if (Utils.getSharedPref(this, "username").equals("")) {
 			Intent i = new Intent(this, Login.class);
 			startActivityForResult(i, REQUEST_LOGIN);
@@ -38,7 +45,7 @@ public class Home extends Activity {
 		setup();
 		LibSpotifyWrapper.init(LibSpotifyWrapper.class.getClassLoader(), Environment
 				.getExternalStorageDirectory().getAbsolutePath()
-				+ "/Android/data/com.spotify.hacks.psyonspotify");
+				+ "/Android/data/com.quentindommerc.sentencify");
 		LibSpotifyWrapper.loginUser(Utils.getSharedPref(this, "username"),
 				Utils.getSharedPref(this, "password"), new LoginDelegate() {
 
@@ -112,6 +119,20 @@ public class Home extends Activity {
 			break;
 		}
 		return true;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+			// forced due to libspotify init
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(startMain);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private void about() {

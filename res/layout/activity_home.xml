@@ -12,16 +12,16 @@
         android:id="@+id/sentence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/search"
-        android:singleLine="true"
-        android:hint="@string/hint_sentence" />
+        android:layout_marginTop="55dp"
+        android:hint="@string/hint_sentence"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="25dp"
+        android:layout_below="@+id/sentence"
+        android:layout_marginTop="20dp"
         android:onClick="sentencify"
         android:text="@string/search" />
 

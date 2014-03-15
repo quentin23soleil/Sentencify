@@ -3,6 +3,15 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+       <style name="CustomShowcaseTheme" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">@color/sentencify_color_transp</item>
+        <item name="sv_showcaseColor">@color/sentencify_color</item>
+        <item name="sv_buttonText">Got it!</item>
+        <item name="sv_buttonBackgroundColor">@drawable/sentencify_btn_default_holo_light</item>
+    </style>
+    
+    
+    
   <style name="AutoCompleteTextViewSentencify" parent="android:Widget.Holo.Light.AutoCompleteTextView">
       <item name="android:dropDownSelector">@drawable/sentencify_list_selector_holo_light</item>
 	    <item name="android:background">@drawable/sentencify_edit_text_holo_light</item>

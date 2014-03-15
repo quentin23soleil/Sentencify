@@ -3,47 +3,30 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <style name="Sentencify" parent="@style/_Sentencify"/>
+    <style name="Sentencify" parent="@style/_Sentencify" />
 
-  <style name="_Sentencify" parent="android:Theme.Holo.Light.DarkActionBar">
-
-    <item name="android:editTextBackground">@drawable/sentencify_edit_text_holo_light</item>
-
-    <item name="android:textColorHighlight">#9981b71a</item>
-    <item name="android:textSelectHandleLeft">@drawable/sentencify_text_select_handle_left</item>
-    <item name="android:textSelectHandleRight">@drawable/sentencify_text_select_handle_right</item>
-    <item name="android:textSelectHandle">@drawable/sentencify_text_select_handle_middle</item>
-
-    <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewSentencify</item>
-
-    <item name="android:listChoiceIndicatorMultiple">@drawable/sentencify_btn_check_holo_light</item>
-
-    <item name="android:listChoiceIndicatorSingle">@drawable/sentencify_btn_radio_holo_light</item>
-
-    <item name="android:buttonStyle">@style/ButtonSentencify</item>
-
-    <item name="android:imageButtonStyle">@style/ImageButtonSentencify</item>
-
-    <item name="android:dropDownSpinnerStyle">@style/SpinnerSentencify</item>
-
-    <item name="android:progressBarStyleHorizontal">@style/ProgressBarSentencify</item>
-
-    <item name="android:seekBarStyle">@style/SeekBarSentencify</item>
-
-    <item name="android:ratingBarStyle">@style/RatingBarSentencify</item>
-
-    <item name="android:ratingBarStyleIndicator">@style/RatingBarBigSentencify</item>
-
-    <item name="android:ratingBarStyleSmall">@style/RatingBarSmallSentencify</item>
-
-    <item name="android:buttonStyleToggle">@style/ToggleSentencify</item>
-
-    <item name="android:listChoiceBackgroundIndicator">@drawable/sentencify_list_selector_holo_light</item>
-
-    <item name="android:activatedBackgroundIndicator">@drawable/sentencify_activated_background_holo_light</item>
-
-    <item name="android:fastScrollThumbDrawable">@drawable/sentencify_fastscroll_thumb_holo</item>
-
-  </style>
+    <style name="_Sentencify" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="showcaseViewStyle">@style/CustomShowcaseTheme</item>
+        <item name="android:editTextBackground">@drawable/sentencify_edit_text_holo_light</item>
+        <item name="android:textColorHighlight">#9981b71a</item>
+        <item name="android:textSelectHandleLeft">@drawable/sentencify_text_select_handle_left</item>
+        <item name="android:textSelectHandleRight">@drawable/sentencify_text_select_handle_right</item>
+        <item name="android:textSelectHandle">@drawable/sentencify_text_select_handle_middle</item>
+        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextViewSentencify</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/sentencify_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/sentencify_btn_radio_holo_light</item>
+        <item name="android:buttonStyle">@style/ButtonSentencify</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonSentencify</item>
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerSentencify</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarSentencify</item>
+        <item name="android:seekBarStyle">@style/SeekBarSentencify</item>
+        <item name="android:ratingBarStyle">@style/RatingBarSentencify</item>
+        <item name="android:ratingBarStyleIndicator">@style/RatingBarBigSentencify</item>
+        <item name="android:ratingBarStyleSmall">@style/RatingBarSmallSentencify</item>
+        <item name="android:buttonStyleToggle">@style/ToggleSentencify</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/sentencify_list_selector_holo_light</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/sentencify_activated_background_holo_light</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/sentencify_fastscroll_thumb_holo</item>
+    </style>
 
 </resources>

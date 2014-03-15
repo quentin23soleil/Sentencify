@@ -59,8 +59,9 @@ JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrappe
   storage_path = je->GetStringUTFChars(j_storage_path, 0);
 
   // Save a reference to the java LibSpotify classloader to be able to retreive it from a native thread.
-  if (s_java_class_loader != NULL)
-  je->DeleteGlobalRef(class_loader);
+  if (s_java_class_loader != NULL) {
+    je->DeleteGlobalRef(class_loader);
+  }
   s_java_class_loader = je->NewGlobalRef(class_loader);
 
   pthread_setname_np(tid, "Spotify Thread");
@@ -89,14 +90,14 @@ JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrappe
   const char *name = je->GetStringUTFChars(j_name, 0);
   string_params.push_back(name);
 
-    int stringCount = je->GetArrayLength(trackables_);
+  int stringCount = je->GetArrayLength(trackables_);
 
-    for (int i=0; i<stringCount; i++) {
-        jstring string = (jstring) je->GetObjectArrayElement(trackables_, i);
-        const char *rawString = je->GetStringUTFChars(string, 0);
-        string_params.push_back(rawString);
-        // Don't forget to call `ReleaseStringUTFChars` when you're done.
-    }
+  for (int i=0; i<stringCount; i++) {
+    jstring string = (jstring) je->GetObjectArrayElement(trackables_, i);
+    const char *rawString = je->GetStringUTFChars(string, 0);
+    string_params.push_back(rawString);
+    je->ReleaseStringUTFChars(string, rawString);
+  }
 
 
   addTask(create_playlist, "create_playlist", string_params);

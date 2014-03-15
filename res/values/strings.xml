@@ -15,5 +15,7 @@
     <string name="error_login">Cannot sign you in, are you sure about your credentials?</string>
     <string name="action_about">About</string>
     <string name="action_logout">Logout</string>
+    <string name="showcase_sentence_title">Type your sentence here</string>
+    <string name="showcase_sentence_details">Use dots (.) to split your sentence in sub-searches (i.e. : "I am. Using this. With love" will search for "I am", "Using this" and "With love")</string>
 
 </resources>

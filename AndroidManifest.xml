@@ -30,6 +30,7 @@
         <activity android:name="com.quentindommerc.sentencify.activity.Login"></activity>
         <activity android:name="com.quentindommerc.sentencify.activity.Sentence"></activity>
         <activity android:name="com.quentindommerc.sentencify.activity.Playlist"></activity>
+        <activity android:name="com.quentindommerc.sentencify.activity.About"></activity>
     </application>
 
 </manifest>
