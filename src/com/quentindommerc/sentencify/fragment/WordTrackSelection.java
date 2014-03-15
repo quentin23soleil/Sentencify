@@ -14,6 +14,7 @@ import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	private TrackAdapter mAdapter;
 	private ProgressBar mProgress;
 	private OnTrackSelectedFromPage mListener;
+	private LinearLayout mEmpty;
 
 	public static WordTrackSelection newInstance(Word w) {
 		Bundle b = new Bundle();
@@ -58,6 +60,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 		View v = inflater.inflate(R.layout.f_word_track_selection, container, false);
 		mList = (ListView) v.findViewById(R.id.list);
 		mProgress = (ProgressBar) v.findViewById(R.id.progress);
+		mEmpty = (LinearLayout) v.findViewById(R.id.empty);
 		return v;
 	}
 
@@ -89,6 +92,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 			super.onPostExecute(result);
 			mProgress.setVisibility(View.GONE);
 			mList.setAdapter(mAdapter);
+			mList.setEmptyView(mEmpty);
 		}
 
 		@Override
