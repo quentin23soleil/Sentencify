@@ -168,6 +168,7 @@ public class Home extends Activity {
 		startActivity(i);
 	}
 
+	@SuppressWarnings("unused")
 	private void logout() {
 		Utils.rmSharedPref(this, "username");
 		Utils.rmSharedPref(this, "password");

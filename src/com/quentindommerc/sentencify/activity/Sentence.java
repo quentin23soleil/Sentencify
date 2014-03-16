@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.analytics.tracking.android.EasyTracker;
@@ -126,27 +127,6 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.action_about:
-			about();
-			break;
-		case android.R.id.home:
-			finish();
-			return true;
-
-		default:
-			break;
-		}
-		return true;
-	}
-
-	private void about() {
-		Intent i = new Intent(this, About.class);
-		startActivity(i);
-	}
-
-	@Override
 	public void trackSelected(Word w) {
 		if (mPager.getCurrentItem() < (mAdapter.getCount() - 1))
 			mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
@@ -165,6 +145,35 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	@Override
 	public void done() {
 		createPlaylist();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.about, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_about:
+			about();
+			break;
+
+		case android.R.id.home:
+			setResult(RESULT_OK);
+			finish();
+			break;
+
+		default:
+			break;
+		}
+		return true;
+	}
+
+	private void about() {
+		Intent i = new Intent(this, About.class);
+		startActivity(i);
 	}
 
 }
