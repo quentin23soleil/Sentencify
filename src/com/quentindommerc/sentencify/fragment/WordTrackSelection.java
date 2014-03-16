@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.quentindommerc.sentencify.BuildConfig;
 import com.quentindommerc.sentencify.R;
@@ -145,12 +144,6 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 		mAdapter.getItem(pos).setSelected(true);
 		mAdapter.notifyDataSetChanged();
 		mWord.setSelectedTrack(t);
-		Toast.makeText(getActivity(), t.getName() + " selected", Toast.LENGTH_LONG).show();
 		mListener.trackSelected(mWord);
 	}
-
-	// public void showHelp() {
-	// if (!Utils.getBooleanSharedPref(getActivity(), "help_list"))
-	// mAdapter.showHelp();
-	// }
 }

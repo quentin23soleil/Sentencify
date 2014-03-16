@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Playlist;
@@ -29,7 +30,7 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sentence);
-		Utils.rmSharedPref(this, "help_list");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		mPager = (ViewPager) findViewById(R.id.view_pager);
 		PagerTabStrip strip = (PagerTabStrip) findViewById(R.id.pager_strip);
 		strip.setTabIndicatorColor(getResources().getColor(R.color.sentencify_color));
@@ -61,7 +62,7 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 
 		@Override
 		public Fragment getItem(int arg0) {
-			if (arg0 == 0 && !Utils.getBooleanSharedPref(Sentence.this, "help_list"))
+			if (arg0 == 0 && !Utils.getBooleanSharedPref(Sentence.this, "help_list", true))
 				return WordTrackSelection.newInstance(mWords.get(arg0), true);
 			return WordTrackSelection.newInstance(mWords.get(arg0), false);
 		}
@@ -96,12 +97,33 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 						Intent i = new Intent(Sentence.this,
 								com.quentindommerc.sentencify.activity.Playlist.class);
 						i.putExtra("playlist", p);
-						startActivity(i);
+						startActivityForResult(i, 0);
 					}
 				});
 			}
 		};
 		t.start();
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_about:
+			about();
+			break;
+		case android.R.id.home:
+			finish();
+			return true;
+
+		default:
+			break;
+		}
+		return true;
+	}
+
+	private void about() {
+		Intent i = new Intent(this, About.class);
+		startActivity(i);
 	}
 
 	@Override
@@ -111,6 +133,13 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 		else {
 			createPlaylist();
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		if (arg1 == RESULT_OK && arg0 == 0)
+			finish();
+
 	}
 
 }

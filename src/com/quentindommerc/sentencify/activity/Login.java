@@ -126,7 +126,7 @@ public class Login extends FragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.login, menu);
+		getMenuInflater().inflate(R.menu.about, menu);
 		return true;
 	}
 

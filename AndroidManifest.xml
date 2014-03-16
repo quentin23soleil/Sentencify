@@ -8,15 +8,15 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name="com.quentindommerc.sentencify.base.Sentencify"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:name="com.quentindommerc.sentencify.base.Sentencify"
         android:theme="@style/Sentencify" >
         <activity
             android:name="com.quentindommerc.sentencify.activity.Home"
@@ -27,10 +27,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.quentindommerc.sentencify.activity.Login"></activity>
-        <activity android:name="com.quentindommerc.sentencify.activity.Sentence"></activity>
-        <activity android:name="com.quentindommerc.sentencify.activity.Playlist"></activity>
-        <activity android:name="com.quentindommerc.sentencify.activity.About"></activity>
+        <activity android:name="com.quentindommerc.sentencify.activity.Login" />
+        <activity android:name="com.quentindommerc.sentencify.activity.Sentence" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quentindommerc.sentencify.activity.Home" />
+        </activity>
+        <activity android:name="com.quentindommerc.sentencify.activity.Playlist" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quentindommerc.sentencify.activity.Home" />
+        </activity>
+        <activity android:name="com.quentindommerc.sentencify.activity.About" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quentindommerc.sentencify.activity.Home" />
+        </activity>
     </application>
 
 </manifest>
