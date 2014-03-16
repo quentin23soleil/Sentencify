@@ -19,6 +19,8 @@ import com.quentindommerc.sentencify.listener.LoginDelegate;
 import com.quentindommerc.sentencify.utils.LibSpotifyWrapper;
 import com.quentindommerc.sentencify.utils.Utils;
 
+import fr.nicolaspomepuy.discreetapprate.AppRate;
+
 public class Home extends Activity {
 
 	private static final int REQUEST_LOGIN = 0;
@@ -33,6 +35,7 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
+		AppRate.with(this).initialLaunchCount(3).checkAndShow();
 		if (!Utils.getBooleanSharedPref(this, "help", true)) {
 			Utils.setSharedPref(this, "help", true);
 			showShowcase();
