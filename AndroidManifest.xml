@@ -52,6 +52,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.quentindommerc.sentencify.activity.Home" />
         </activity>
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="187f4d09e4a79ce3ae37370099e151e74e2910e4"/>
     </application>
 
 </manifest>

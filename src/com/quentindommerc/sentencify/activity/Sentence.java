@@ -16,11 +16,14 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Playlist;
 import com.quentindommerc.sentencify.bean.Word;
+import com.quentindommerc.sentencify.fragment.ButtonFragment;
 import com.quentindommerc.sentencify.fragment.WordTrackSelection;
+import com.quentindommerc.sentencify.listener.OnPlaylistSelectionListener;
 import com.quentindommerc.sentencify.listener.OnTrackSelectedFromPage;
 import com.quentindommerc.sentencify.utils.Utils;
 
-public class Sentence extends FragmentActivity implements OnTrackSelectedFromPage {
+public class Sentence extends FragmentActivity implements OnTrackSelectedFromPage,
+		OnPlaylistSelectionListener {
 
 	private ArrayList<Word> mWords;
 	private ViewPager mPager;
@@ -75,18 +78,22 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 
 		@Override
 		public Fragment getItem(int arg0) {
-			if (arg0 == 0 && !Utils.getBooleanSharedPref(Sentence.this, "help_list", true))
+			if (arg0 == getCount() - 1) {
+				return ButtonFragment.newInstance();
+			} else if (arg0 == 0 && !Utils.getBooleanSharedPref(Sentence.this, "help_list", true))
 				return WordTrackSelection.newInstance(mWords.get(arg0), true);
 			return WordTrackSelection.newInstance(mWords.get(arg0), false);
 		}
 
 		@Override
 		public int getCount() {
-			return mWords.size();
+			return mWords.size() + 1;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
+			if (position == getCount() - 1)
+				return getString(R.string.next_step);
 			return mWords.get(position).getWord().substring(0, 1).toUpperCase()
 					+ mWords.get(position).getWord().substring(1);
 		}
@@ -143,9 +150,9 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	public void trackSelected(Word w) {
 		if (mPager.getCurrentItem() < (mAdapter.getCount() - 1))
 			mPager.setCurrentItem(mPager.getCurrentItem() + 1, true);
-		else {
-			createPlaylist();
-		}
+		// else {
+		// createPlaylist();
+		// }
 	}
 
 	@Override
@@ -153,6 +160,11 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 		if (arg1 == RESULT_OK && arg0 == 0)
 			finish();
 
+	}
+
+	@Override
+	public void done() {
+		createPlaylist();
 	}
 
 }

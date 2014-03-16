@@ -9,6 +9,7 @@
     <string name="hint_sentence">This is. only one sentence. use points</string>
     <string name="error_sentence_empty">No word, no song.</string>
     <string name="select_it">This one!</string>
+    <string name="next_step">Go to the next step!</string>
     <string name="username">Spotify username</string>
     <string name="password">Spotify password</string>
     <string name="connect">Start!</string>
