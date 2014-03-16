@@ -3,6 +3,12 @@ Sentencify
 
 Sentencify, create playlists from sentences with Spotify
 
+What is it exactly?
+--
+As I said, it's an Android app, to create playlist from pure sentences.
+Let's say you want to create a playlist with titles named "I love you, this is awesome, thanks". Well, I'm going to do that for you.
+You write your sentence, you select the best titles you like and voilà. Isn't your life simple now? Yes it iiiss. Hum.
+
 
 Why did I do it?
 --
