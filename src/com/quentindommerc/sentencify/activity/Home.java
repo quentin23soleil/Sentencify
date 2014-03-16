@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.espian.showcaseview.ShowcaseView;
 import com.espian.showcaseview.targets.ViewTarget;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.BuildConfig;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.listener.LoginDelegate;
@@ -28,6 +29,18 @@ public class Home extends Activity {
 	static {
 		System.loadLibrary("spotify");
 		System.loadLibrary("spotifywrapper");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 
 	@Override

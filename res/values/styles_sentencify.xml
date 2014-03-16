@@ -12,6 +12,18 @@
         <item name="sv_detailTextAppearance">@style/CustomDetail</item>
     </style>
 
+    <style name="ActionBarStyle" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#262626</item>
+
+        <!-- <item name="android:colorBackground">@color/dull_purple</item> -->
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="CustomTitle" parent="TextAppearance.ShowcaseView.Title">
         <item name="android:textColor">@android:color/white</item>
     </style>

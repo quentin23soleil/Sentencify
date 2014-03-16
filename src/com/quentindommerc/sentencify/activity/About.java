@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.R;
 
 public class About extends Activity {
@@ -16,6 +17,18 @@ public class About extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_about);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
 	}
 
 	@Override

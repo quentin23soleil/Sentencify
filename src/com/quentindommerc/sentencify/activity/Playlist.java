@@ -10,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.adapter.FinalPlaylistAdapter;
 import com.quentindommerc.sentencify.bean.Word;
@@ -22,6 +24,18 @@ public class Playlist extends FragmentActivity {
 	private EditText mName;
 	private ListView mList;
 	private FinalPlaylistAdapter mFinalPlaylistAdapter;
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
+	}
 
 	@Override
 	protected void onCreate(Bundle arg0) {
@@ -45,6 +59,9 @@ public class Playlist extends FragmentActivity {
 			mUri.add(w.getSelectedTrack().getHref());
 		}
 		LibSpotifyWrapper.createPlaylist(mPlaylist.getOriginal(), mUri);
+		Toast.makeText(this, getString(R.string.congrats), Toast.LENGTH_LONG).show();
+		setResult(RESULT_OK);
+		finish();
 
 	}
 

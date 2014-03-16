@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.listener.LoginDelegate;
 import com.quentindommerc.sentencify.utils.LibSpotifyWrapper;
@@ -29,6 +30,18 @@ public class Login extends FragmentActivity {
 
 	private EditText mUsername;
 	private EditText mPassword;
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
+	}
 
 	@Override
 	protected void onCreate(Bundle arg0) {

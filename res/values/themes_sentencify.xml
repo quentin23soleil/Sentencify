@@ -27,6 +27,7 @@
         <item name="android:listChoiceBackgroundIndicator">@drawable/sentencify_list_selector_holo_light</item>
         <item name="android:activatedBackgroundIndicator">@drawable/sentencify_activated_background_holo_light</item>
         <item name="android:fastScrollThumbDrawable">@drawable/sentencify_fastscroll_thumb_holo</item>
-    </style>
+        <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+        </style>
 
 </resources>

@@ -12,6 +12,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Playlist;
 import com.quentindommerc.sentencify.bean.Word;
@@ -25,6 +26,18 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	private ViewPager mPager;
 	private WordPagerAdapter mAdapter;
 	private String mInitialSentence;
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
