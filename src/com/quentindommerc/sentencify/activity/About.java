@@ -1,10 +1,12 @@
 package com.quentindommerc.sentencify.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.quentindommerc.sentencify.R;
 
@@ -22,11 +24,23 @@ public class About extends Activity {
 		return true;
 	}
 
+	public void twitter(View v) {
+		try {
+			Intent intent = new Intent(Intent.ACTION_VIEW,
+					Uri.parse("twitter://user?screen_name=kentin_dommerc"));
+			startActivity(intent);
+
+		} catch (Exception e) {
+			startActivity(new Intent(Intent.ACTION_VIEW,
+					Uri.parse("https://twitter.com/#!/kentin_dommerc")));
+		}
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			finish();
 			return true;
 		}
 		return true;

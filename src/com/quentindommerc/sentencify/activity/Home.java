@@ -33,7 +33,7 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
-		if (!Utils.getBooleanSharedPref(this, "help")) {
+		if (!Utils.getBooleanSharedPref(this, "help", true)) {
 			Utils.setSharedPref(this, "help", true);
 			showShowcase();
 		}
@@ -116,13 +116,15 @@ public class Home extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_logout:
-			logout();
-			break;
+		// case R.id.action_logout:
+		// logout();
+		// break;
 		case R.id.action_about:
 			about();
+			break;
 		case R.id.action_help:
 			showShowcase();
+			break;
 		default:
 			break;
 		}

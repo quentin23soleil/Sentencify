@@ -36,9 +36,10 @@ public class Login extends FragmentActivity {
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		getActionBar().hide();
 		super.onCreate(arg0);
+
 		LibSpotifyWrapper.init(LibSpotifyWrapper.class.getClassLoader(), Environment
 				.getExternalStorageDirectory().getAbsolutePath()
-				+ "/Android/data/com.spotify.hacks.psyonspotify");
+				+ "/Android/data/com.quentindommerc.sentencify");
 		setContentView(R.layout.activity_login);
 		mUsername = (EditText) findViewById(R.id.username);
 		mPassword = (EditText) findViewById(R.id.password);

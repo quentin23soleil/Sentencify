@@ -1,5 +1,4 @@
-/Users/kentin/Documents/workspace/Sentencify/obj/local/armeabi/objs/spotifywrapper/jni_glue.o: \
- /Users/kentin/Documents/workspace/Sentencify/jni/jni_glue.cpp \
+obj/local/armeabi/objs/spotifywrapper/jni_glue.o: jni/jni_glue.cpp \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stdlib.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_cprolog.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/config/features.h \
@@ -145,19 +144,15 @@
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_num_get.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_num_get.c \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_io.c \
- /Users/kentin/Documents/workspace/Sentencify/jni/api.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/jni_glue.h \
+ jni/api.h jni/jni_glue.h \
  /Users/kentin/Desktop/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/tasks.h \
+ jni/tasks.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/list \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_list.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_list.c \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_carray.h \
  /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/sound_driver.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/run_loop.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/api.h \
- /Users/kentin/Documents/workspace/Sentencify/jni/logger.h
+ jni/sound_driver.h jni/run_loop.h jni/api.h jni/logger.h
 
 /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stdlib.h:
 
@@ -449,13 +444,13 @@
 
 /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_string_io.c:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/api.h:
+jni/api.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/jni_glue.h:
+jni/jni_glue.h:
 
 /Users/kentin/Desktop/android-ndk-r9d/platforms/android-19/arch-arm/usr/include/jni.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/tasks.h:
+jni/tasks.h:
 
 /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/list:
 
@@ -467,10 +462,10 @@
 
 /Users/kentin/Desktop/android-ndk-r9d/sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/sound_driver.h:
+jni/sound_driver.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/run_loop.h:
+jni/run_loop.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/api.h:
+jni/api.h:
 
-/Users/kentin/Documents/workspace/Sentencify/jni/logger.h:
+jni/logger.h:

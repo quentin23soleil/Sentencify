@@ -52,7 +52,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved) {
   return JNI_VERSION_1_6;
 }
 
-JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrapper_init(JNIEnv * je, jclass jc, jobject class_loader, jstring j_storage_path) {
+extern "C" JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrapper_init(JNIEnv * je, jclass jc, jobject class_loader, jstring j_storage_path) {
   static pthread_t tid;
   static const char *storage_path;
 
@@ -91,10 +91,11 @@ JNIEXPORT void JNICALL Java_com_quentindommerc_sentencify_utils_LibSpotifyWrappe
   string_params.push_back(name);
 
   int stringCount = je->GetArrayLength(trackables_);
-
+const char *rawString = NULL;
+jstring string = NULL;
   for (int i=0; i<stringCount; i++) {
-    jstring string = (jstring) je->GetObjectArrayElement(trackables_, i);
-    const char *rawString = je->GetStringUTFChars(string, 0);
+    string = (jstring) je->GetObjectArrayElement(trackables_, i);
+    rawString = je->GetStringUTFChars(string, 0);
     string_params.push_back(rawString);
   }
 

@@ -60,10 +60,11 @@ public class Playlist extends FragmentActivity {
 		case R.id.action_about:
 			about();
 			break;
+
 		case android.R.id.home:
 			setResult(RESULT_OK);
 			finish();
-			return true;
+			break;
 
 		default:
 			break;

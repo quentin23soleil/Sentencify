@@ -6,6 +6,5 @@ public class Sentencify extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
 	}
 }
