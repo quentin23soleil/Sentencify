@@ -33,7 +33,10 @@ public class Home extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		mSentence = (EditText) findViewById(R.id.sentence);
-		showShowcase();
+		if (!Utils.getBooleanSharedPref(this, "help")) {
+			Utils.setSharedPref(this, "help", true);
+			showShowcase();
+		}
 		if (Utils.getSharedPref(this, "username").equals("")) {
 			Intent i = new Intent(this, Login.class);
 			startActivityForResult(i, REQUEST_LOGIN);

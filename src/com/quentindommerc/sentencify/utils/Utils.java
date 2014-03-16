@@ -112,10 +112,22 @@ public class Utils {
 		return pref.getString(key, "");
 	}
 
+	public static Boolean getBooleanSharedPref(Context ct, String key) {
+		SharedPreferences pref = ct.getSharedPreferences(Logger.TAG, Context.MODE_PRIVATE);
+		return pref.getBoolean(key, false);
+	}
+
 	public static void setSharedPref(Context ct, String key, String value) {
 		SharedPreferences.Editor pref = ct.getSharedPreferences(Logger.TAG, Context.MODE_PRIVATE)
 				.edit();
 		pref.putString(key, value);
+		pref.commit();
+	}
+
+	public static void setSharedPref(Context ct, String key, boolean value) {
+		SharedPreferences.Editor pref = ct.getSharedPreferences(Logger.TAG, Context.MODE_PRIVATE)
+				.edit();
+		pref.putBoolean(key, value);
 		pref.commit();
 	}
 

@@ -1,5 +1,6 @@
 package com.quentindommerc.sentencify.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +11,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.espian.showcaseview.ShowcaseView;
+import com.espian.showcaseview.targets.ViewTarget;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.bean.Track;
 import com.quentindommerc.sentencify.listener.OnTrackSelected;
+import com.quentindommerc.sentencify.utils.Utils;
 
 public class TrackAdapter extends ArrayAdapter<Track> {
 
 	private final LayoutInflater mInflater;
 	private final OnTrackSelected mListener;
+	private final Context mContext;
+	private Button mFirstButton;
 
 	public TrackAdapter(Context context, OnTrackSelected listener) {
 		super(context, 0);
 		mInflater = LayoutInflater.from(context);
 		mListener = listener;
+		mContext = context;
 	}
 
 	@Override
@@ -57,7 +64,18 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 				mListener.trackSelected(t, position);
 			}
 		});
+		if (position == 0)
+			mFirstButton = holder.select;
+
 		return v;
+	}
+
+	public void showHelp() {
+		Utils.setSharedPref(mContext, "help_list", true);
+		ViewTarget target = new ViewTarget(mFirstButton);
+		ShowcaseView.insertShowcaseView(target, (Activity) mContext,
+				R.string.showcase_sentence_title, R.string.showcase_sentence_details);
+
 	}
 
 	static class ViewHolder {

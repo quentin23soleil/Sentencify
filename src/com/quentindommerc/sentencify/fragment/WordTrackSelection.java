@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.quentindommerc.sentencify.BuildConfig;
 import com.quentindommerc.sentencify.R;
 import com.quentindommerc.sentencify.adapter.TrackAdapter;
 import com.quentindommerc.sentencify.bean.Track;
@@ -29,6 +30,7 @@ import com.quentindommerc.sentencify.listener.OnTrackSelectedFromPage;
 import com.quentindommerc.sentencify.utils.Api;
 import com.quentindommerc.sentencify.utils.ApiParser;
 import com.quentindommerc.sentencify.utils.Logger;
+import com.quentindommerc.sentencify.utils.Utils;
 
 public class WordTrackSelection extends Fragment implements OnTrackSelected {
 
@@ -50,6 +52,8 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if (BuildConfig.DEBUG)
+			Utils.rmSharedPref(getActivity(), "help_list");
 		mListener = (OnTrackSelectedFromPage) getActivity();
 		mWord = getArguments().getParcelable("word");
 		mAdapter = new TrackAdapter(getActivity(), this);
@@ -93,6 +97,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 			mProgress.setVisibility(View.GONE);
 			mList.setAdapter(mAdapter);
 			mList.setEmptyView(mEmpty);
+			// showHelp();
 		}
 
 		@Override
@@ -143,4 +148,8 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 		mListener.trackSelected(mWord);
 	}
 
+	public void showHelp() {
+		if (!Utils.getBooleanSharedPref(getActivity(), "help_list"))
+			mAdapter.showHelp();
+	}
 }
