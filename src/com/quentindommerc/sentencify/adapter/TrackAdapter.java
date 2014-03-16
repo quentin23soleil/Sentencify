@@ -23,13 +23,14 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 	private final LayoutInflater mInflater;
 	private final OnTrackSelected mListener;
 	private final Context mContext;
-	private Button mFirstButton;
+	private final Boolean mHelp;
 
-	public TrackAdapter(Context context, OnTrackSelected listener) {
+	public TrackAdapter(Context context, OnTrackSelected listener, boolean b) {
 		super(context, 0);
 		mInflater = LayoutInflater.from(context);
 		mListener = listener;
 		mContext = context;
+		mHelp = b;
 	}
 
 	@Override
@@ -64,18 +65,17 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 				mListener.trackSelected(t, position);
 			}
 		});
-		if (position == 0)
-			mFirstButton = holder.select;
+		if (position == 0 && mHelp && !Utils.getBooleanSharedPref(mContext, "help_list"))
+			showHelp(holder);
 
 		return v;
 	}
 
-	public void showHelp() {
+	public void showHelp(ViewHolder holder) {
 		Utils.setSharedPref(mContext, "help_list", true);
-		ViewTarget target = new ViewTarget(mFirstButton);
+		ViewTarget target = new ViewTarget(holder.select);
 		ShowcaseView.insertShowcaseView(target, (Activity) mContext,
-				R.string.showcase_sentence_title, R.string.showcase_sentence_details);
-
+				R.string.showcase_sentence_title_list, R.string.showcase_sentence_details_list);
 	}
 
 	static class ViewHolder {

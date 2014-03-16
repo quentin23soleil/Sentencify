@@ -7,7 +7,7 @@
         <item name="sv_backgroundColor">@color/sentencify_color_transp</item>
         <item name="sv_showcaseColor">@color/sentencify_color</item>
         <item name="sv_buttonText">Got it!</item>
-        <item name="sv_buttonBackgroundColor">@drawable/sentencify_btn_default_holo_light</item>
+        <item name="sv_buttonBackgroundColor">@drawable/grey_btn_default_holo_light</item>
         <item name="sv_titleTextAppearance">@style/CustomTitle</item>
         <item name="sv_detailTextAppearance">@style/CustomDetail</item>
     </style>

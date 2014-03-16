@@ -19,6 +19,8 @@
     <string name="action_logout">Logout</string>
     <string name="showcase_sentence_title">Type your sentence here</string>
     <string name="showcase_sentence_details">Use dots (.) to split your sentence in sub-searches (i.e. : \"I am. Using this. With love\" will search for \"I am\", \"Using this\" and \"With love\")</string>
+    <string name="showcase_sentence_title_list">Select the title you like</string>
+    <string name="showcase_sentence_details_list">Create your playlist by selecting the best match with your word</string>
     <string name="create_playlist">Create this playlist &#60;3</string>
 
 </resources>

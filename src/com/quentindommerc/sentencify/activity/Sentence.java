@@ -16,6 +16,7 @@ import com.quentindommerc.sentencify.bean.Playlist;
 import com.quentindommerc.sentencify.bean.Word;
 import com.quentindommerc.sentencify.fragment.WordTrackSelection;
 import com.quentindommerc.sentencify.listener.OnTrackSelectedFromPage;
+import com.quentindommerc.sentencify.utils.Utils;
 
 public class Sentence extends FragmentActivity implements OnTrackSelectedFromPage {
 
@@ -28,6 +29,7 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sentence);
+		Utils.rmSharedPref(this, "help_list");
 		mPager = (ViewPager) findViewById(R.id.view_pager);
 		PagerTabStrip strip = (PagerTabStrip) findViewById(R.id.pager_strip);
 		strip.setTabIndicatorColor(getResources().getColor(R.color.sentencify_color));
@@ -59,7 +61,9 @@ public class Sentence extends FragmentActivity implements OnTrackSelectedFromPag
 
 		@Override
 		public Fragment getItem(int arg0) {
-			return WordTrackSelection.newInstance(mWords.get(arg0));
+			if (arg0 == 0 && !Utils.getBooleanSharedPref(Sentence.this, "help_list"))
+				return WordTrackSelection.newInstance(mWords.get(arg0), true);
+			return WordTrackSelection.newInstance(mWords.get(arg0), false);
 		}
 
 		@Override

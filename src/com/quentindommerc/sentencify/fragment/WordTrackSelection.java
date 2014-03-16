@@ -41,9 +41,10 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 	private OnTrackSelectedFromPage mListener;
 	private LinearLayout mEmpty;
 
-	public static WordTrackSelection newInstance(Word w) {
+	public static WordTrackSelection newInstance(Word w, boolean c) {
 		Bundle b = new Bundle();
 		b.putParcelable("word", w);
+		b.putBoolean("help", c);
 		WordTrackSelection f = new WordTrackSelection();
 		f.setArguments(b);
 		return f;
@@ -56,7 +57,7 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 			Utils.rmSharedPref(getActivity(), "help_list");
 		mListener = (OnTrackSelectedFromPage) getActivity();
 		mWord = getArguments().getParcelable("word");
-		mAdapter = new TrackAdapter(getActivity(), this);
+		mAdapter = new TrackAdapter(getActivity(), this, getArguments().getBoolean("help", false));
 	}
 
 	@Override
@@ -148,8 +149,8 @@ public class WordTrackSelection extends Fragment implements OnTrackSelected {
 		mListener.trackSelected(mWord);
 	}
 
-	public void showHelp() {
-		if (!Utils.getBooleanSharedPref(getActivity(), "help_list"))
-			mAdapter.showHelp();
-	}
+	// public void showHelp() {
+	// if (!Utils.getBooleanSharedPref(getActivity(), "help_list"))
+	// mAdapter.showHelp();
+	// }
 }
